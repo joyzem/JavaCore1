@@ -26,4 +26,44 @@ public class ArraysTraining {
         //TODO: implement it
         return 0;
     }
+
+    /**
+     * Переставить элементы массива
+     * в обратном порядке
+     *
+     * @param array массив для преобразования
+     * @return входящий массив в обратном порядке
+     */
+    public int[] reverse(int[] array) {
+        //TODO: implement it
+        return new int[]{};
+    }
+
+    /**
+     * Метод должен вернуть массив,
+     * состоящий из чисел Фибоначчи
+     *
+     * @param numbersCount количество чисел Фибоначчи,
+     *                     требуемое в исходящем массиве.
+     *                     Если numbersCount < 1, исходный
+     *                     массив должен быть пуст.
+     * @return массив из чисел Фибоначчи
+     */
+    public int[] fibonacciNumbers(int numbersCount) {
+        //TODO: implement it
+        return new int[]{};
+    }
+
+    /**
+     * В данном массиве найти максимальное
+     * количество одинаковых элементов.
+     *
+     * @param array массив для выборки
+     * @return количество максимально встречающихся
+     * элементов
+     */
+    public int maxCountSymbol(int[] array) {
+        //TODO: implement it
+        return 0;
+    }
 }

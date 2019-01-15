@@ -31,4 +31,92 @@ public class StringsTrainingTest {
         String capitalReversedText = stringsTraining.capitalReverse(text);
         assertEquals(capitalReversedText, verificationText);
     }
+
+    @Test
+    public void getOddCharacterString_emptyParam() {
+        String text = "";
+        String verificationResult = "";
+        String actualResult = stringsTraining.getOddCharacterString(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getOddCharacterString_notEmptyParam() {
+        String text = "Hello World!";
+        String verificationResult = "el ol!";
+        String actualResult = stringsTraining.getOddCharacterString(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getArrayLastSymbol_notEmptyParam_notEmptyResult() {
+        String text = "Hello Hell";
+        int[] verificationResult = {2, 3, 8};
+        int[] actualResult = stringsTraining.getArrayLastSymbol(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getArrayLastSymbol_notEmptyParam_emptyResult() {
+        String text = "Hello World!";
+        int[] verificationResult = {};
+        int[] actualResult = stringsTraining.getArrayLastSymbol(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getArrayLastSymbol_emptyParam() {
+        String text = "";
+        int[] verificationResult = {};
+        int[] actualResult = stringsTraining.getArrayLastSymbol(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getNumbersCount_emptyParam() {
+        String text = "";
+        int verificationResult = 0;
+        int actualResult = stringsTraining.getNumbersCount(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getNumbersCount_notEmptyParam_notExistNumbers() {
+        String text = "Hello world";
+        int verificationResult = 0;
+        int actualResult = stringsTraining.getNumbersCount(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void getNumbersCount_notEmptyParam_existNumbers() {
+        String text = "He110 w0r1d";
+        int verificationResult = 5;
+        int actualResult = stringsTraining.getNumbersCount(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void replaceAllNumbers_emptyText() {
+        String text = "";
+        String verificationResult = "";
+        String actualResult = stringsTraining.replaceAllNumbers(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void replaceAllNumbers_notEmptyText_numbersDoNotExist() {
+        String text = "Hello World!";
+        String verificationResult = "Hello World!";
+        String actualResult = stringsTraining.replaceAllNumbers(text);
+        assertEquals(actualResult, verificationResult);
+    }
+
+    @Test
+    public void replaceAllNumbers_notEmptyText_existNumbers() {
+        String text = "He110 w0r1d";
+        String verificationResult = "Heoneonezero wzeroroned";
+        String actualResult = stringsTraining.replaceAllNumbers(text);
+        assertEquals(actualResult, verificationResult);
+    }
 }

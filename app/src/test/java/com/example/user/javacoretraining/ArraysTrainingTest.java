@@ -62,4 +62,60 @@ public class ArraysTrainingTest {
         int result = arraysTraining.maxValue(values);
         assertEquals(maxValue, result);
     }
+
+    @Test
+    public void reverse_emptyItems() {
+        int[] values = {};
+        int[] expectedResult = {};
+        int[] actualResult = arraysTraining.reverse(values);
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void reverse_tenItems() {
+        int[] values = {-2, 7, 10, -20};
+        int[] expectedResult = {-20, 10, 7, -2};
+        int[] actualResult = arraysTraining.reverse(values);
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void fibonacciNumbers_emptyItems() {
+        int value = 0;
+        int[] expectedResult = {};
+        int[] actualResult = arraysTraining.fibonacciNumbers(value);
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void fibonacciNumbers_tenItems() {
+        int value = 10;
+        int[] expectedResult = {1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
+        int[] actualResult = arraysTraining.fibonacciNumbers(value);
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void fibonacciNumbers_negativeValue() {
+        int value = -10;
+        int[] expectedResult = {};
+        int[] actualResult = arraysTraining.fibonacciNumbers(value);
+        assertArrayEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void maxCountSymbol_emptyArray() {
+        int[] value = {};
+        int expectedResult = 0;
+        int actualResult = arraysTraining.maxCountSymbol(value);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void maxCountSymbol_notEmptyArray() {
+        int[] value = {3, 1, 4, 2, -9, 1, 4, 3, 1, 4, 1};
+        int expectedResult = 4;
+        int actualResult = arraysTraining.maxCountSymbol(value);
+        assertEquals(expectedResult, actualResult);
+    }
 }
