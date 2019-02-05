@@ -1,6 +1,6 @@
-package com.example.user.javacoretraining.training;
+package com.example.user.javacoretraining.collections;
 
-public class Collections {
+public interface CollectionsBlock {
 
     /**
      * Даны два упорядоченных по невозрастанию списка.

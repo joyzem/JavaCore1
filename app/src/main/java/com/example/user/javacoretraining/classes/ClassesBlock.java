@@ -1,6 +1,6 @@
 package com.example.user.javacoretraining.classes;
 
-public interface TasksForClassBlock {
+public interface ClassesBlock {
 
     /**
      * I
