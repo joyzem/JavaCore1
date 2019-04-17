@@ -1,5 +1,12 @@
 package com.example.user.javacoretraining.classes;
 
+/**
+ * Набор заданий по работе с классами в java.
+ * <p>
+ * Задания подразумевают создание класса(ов), выполняющих задачу.
+ * <p>
+ * Проверка осуществляется ментором.
+ */
 public interface ClassesBlock {
 
     /*
