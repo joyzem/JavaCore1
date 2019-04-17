@@ -1,5 +1,14 @@
 package com.example.user.javacoretraining.training;
 
+/**
+ * Набор тренингов по работе с примитивными типами java.
+ * <p>
+ * Задания определены в комментариях методов.
+ * <p>
+ * Проверка может быть осуществлена запуском тестов.
+ * <p>
+ * Доступна проверка тестированием @see ElementaryTrainingTest.
+ */
 public class ElementaryTraining {
 
     /**

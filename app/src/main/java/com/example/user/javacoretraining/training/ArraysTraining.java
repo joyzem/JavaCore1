@@ -1,5 +1,14 @@
 package com.example.user.javacoretraining.training;
 
+/**
+ * Набор тренингов по работе с массивами в java.
+ * <p>
+ * Задания определены в комментариях методов.
+ * <p>
+ * Проверка может быть осуществлена запуском тестов.
+ * <p>
+ * Доступна проверка тестированием @see ArraysTrainingTest.
+ */
 public class ArraysTraining {
 
     /**
