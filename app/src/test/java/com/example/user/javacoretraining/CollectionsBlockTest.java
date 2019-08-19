@@ -123,7 +123,7 @@ public class CollectionsBlockTest {
         List<Integer> inputList = Arrays.asList(4, 3, 2, 1);
         int n = 3;
         List<Integer> averageValue = collectionsBlock.collectionTask3(inputList, n);
-        List<Integer> expectedValue = Arrays.asList(1, 2, 3, 4);
+        List<Integer> expectedValue = Arrays.asList(3, 2, 1, 4);
         assertEquals(expectedValue, averageValue);
     }
 
