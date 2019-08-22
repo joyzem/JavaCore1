@@ -14,7 +14,7 @@ import java.util.List;
  * <p>
  * Доступна проверка тестированием @see CollectionsBlockTest.
  */
-public class CollectionsBlock<T> {
+public class CollectionsBlock<T extends Comparable> {
 
     /**
      * Даны два упорядоченных по убыванию списка.
@@ -34,7 +34,7 @@ public class CollectionsBlock<T> {
     /**
      * Дан список. После каждого элемента добавьте предшествующую ему часть списка.
      *
-     * @param inputList список для изменения
+     * @param inputList с исходными данными
      * @return измененный список
      * @throws NullPointerException если один из параметров null
      */
