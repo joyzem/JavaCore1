@@ -5,6 +5,7 @@ import com.example.user.javacoretraining.training.StringsTraining;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class StringsTrainingTest {
@@ -53,7 +54,7 @@ public class StringsTrainingTest {
         String text = "Hello Hell";
         int[] verificationResult = {2, 3, 8};
         int[] actualResult = stringsTraining.getArrayLastSymbol(text);
-        assertEquals(actualResult, verificationResult);
+        assertArrayEquals(actualResult, verificationResult);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class StringsTrainingTest {
         String text = "Hello World!";
         int[] verificationResult = {};
         int[] actualResult = stringsTraining.getArrayLastSymbol(text);
-        assertEquals(actualResult, verificationResult);
+        assertArrayEquals(actualResult, verificationResult);
     }
 
     @Test
@@ -69,7 +70,7 @@ public class StringsTrainingTest {
         String text = "";
         int[] verificationResult = {};
         int[] actualResult = stringsTraining.getArrayLastSymbol(text);
-        assertEquals(actualResult, verificationResult);
+        assertArrayEquals(actualResult, verificationResult);
     }
 
     @Test
