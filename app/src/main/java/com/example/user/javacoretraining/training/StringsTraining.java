@@ -58,7 +58,7 @@ public class StringsTraining {
      * соответствующими словами.
      *
      * @param text текст для поиска и замены
-     * @return текст, где цыфры заменены словами
+     * @return текст, где цифры заменены словами
      */
     public String replaceAllNumbers(String text) {
         //TODO: implement it

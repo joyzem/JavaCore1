@@ -87,10 +87,14 @@ public class ArraysTrainingTest {
         assertArrayEquals(expectedResult, actualResult);
     }
 
-    @Test
-    public void fibonacciNumbers_tenItems() {
-        int value = 10;
-        int[] expectedResult = {1, 1, 2, 3, 5, 8, 13, 21, 34, 55};
+    @Test(timeout = 100)
+    public void fibonacciNumbers_fortyItems() {
+        int value = 40;
+        int[] expectedResult = {
+                1, 1, 2, 3, 5, 8, 13, 21, 34, 55,
+                89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765,
+                10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040,
+                1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155};
         int[] actualResult = arraysTraining.fibonacciNumbers(value);
         assertArrayEquals(expectedResult, actualResult);
     }
@@ -115,6 +119,14 @@ public class ArraysTrainingTest {
     public void maxCountSymbol_notEmptyArray() {
         int[] value = {3, 1, 4, 2, -9, 1, 4, 3, 1, 4, 1};
         int expectedResult = 4;
+        int actualResult = arraysTraining.maxCountSymbol(value);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void maxCountSymbol_allDifferent() {
+        int[] value = {3, 1, 4, 2};
+        int expectedResult = 1;
         int actualResult = arraysTraining.maxCountSymbol(value);
         assertEquals(expectedResult, actualResult);
     }

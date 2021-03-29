@@ -58,6 +58,20 @@ public class CollectionsBlockTest {
     }
 
     @Test
+    public void collectionTask0_mergeNotEmptyLists() {
+        List<Integer> secondList = Arrays.asList(3, 1, -5);
+        List<Integer> firstList = Arrays.asList(2, -4, -6);
+        List<Integer> averageValue = collectionsBlock.collectionTask0(firstList, secondList);
+        List<Integer> expectedValue = Arrays.asList(3, 2, 1, -4, -5, -6);
+        assertEquals(expectedValue, averageValue);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void collectionTask0_throwsNPE() {
+        collectionsBlock.collectionTask0(null, null);
+    }
+
+    @Test
     public void collectionTask1_emptyList() {
         List<Integer> inputList = Collections.emptyList();
         List<Integer> averageValue = collectionsBlock.collectionTask1(inputList);
@@ -137,6 +151,15 @@ public class CollectionsBlockTest {
     }
 
     @Test
+    public void collectionTask3_notEmptyList_largeLeftShift() {
+        List<Integer> inputList = Arrays.asList(4, 3, 2, 1);
+        int n = -2_000_000_003;
+        List<Integer> averageValue = collectionsBlock.collectionTask3(inputList, n);
+        List<Integer> expectedValue = Arrays.asList(1, 4, 3, 2);
+        assertEquals(expectedValue, averageValue);
+    }
+
+    @Test
     public void collectionTask4_emptyList() {
         List<String> inputList = Collections.emptyList();
         String a = "Hello";
@@ -156,6 +179,16 @@ public class CollectionsBlockTest {
         assertEquals(expectedValue, averageValue);
     }
 
+    @Test
+    public void collectionTask4_notEmptyListMultipleReplace() {
+        List<String> inputList = Arrays.asList("Hello", "Hello", ",", " ", "world", "Hello");
+        String a = "Hello";
+        String b = "Hi";
+        List<String> averageValue = collectionsBlock.collectionTask4(inputList, a, b);
+        List<String> expectedValue = Arrays.asList("Hi", "Hi", ",", " ", "world", "Hi");
+        assertEquals(expectedValue, averageValue);
+    }
+
     @Test(expected = NullPointerException.class)
     public void collectionTask4_checkNull() {
         List<String> inputList = null;
@@ -164,5 +197,12 @@ public class CollectionsBlockTest {
         List<String> averageValue = collectionsBlock.collectionTask4(inputList, a, b);
         List<String> expectedValue = Arrays.asList("Hi", ",", " ", "world");
         assertEquals(expectedValue, averageValue);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void collectionTask4_checkNullB() {
+        List<String> inputList = Collections.emptyList();
+        String a = "Hello";
+        collectionsBlock.collectionTask4(inputList, a, null);
     }
 }

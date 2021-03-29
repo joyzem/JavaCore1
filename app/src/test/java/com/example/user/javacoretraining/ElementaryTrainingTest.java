@@ -24,6 +24,13 @@ public class ElementaryTrainingTest {
     }
 
     @Test
+    public void averageValue_checkDoubleResult() {
+        double averageValue = elementaryTraining.averageValue(11, 20);
+        double expectedValue = 15.5;
+        assertEquals(expectedValue, averageValue, 0.1);
+    }
+
+    @Test
     public void averageValue_emptyValues() {
         double averageValue = elementaryTraining.averageValue(0, 0);
         int expectedValue = 0;
