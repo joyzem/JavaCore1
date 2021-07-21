@@ -70,13 +70,7 @@ public class ElementaryTraining {
         // разряд числа - первую цифру на наивысший разряд числа,
         // а вторую - на десятки. Последнюю цифру - на единицу
 
-        int valueLength = 0;
-        int valueCopy = value;
-
-        do {
-            valueCopy /= 10;
-            valueLength++;
-        } while (valueCopy > 0);
+        int valueLength = getValueLength(value);
 
         if (valueLength > 5 || valueLength < 2) {
             return value;
@@ -87,27 +81,22 @@ public class ElementaryTraining {
         int currentPosition = 1;
 
         // отвечает за разрядность
-        int decimal = 1;
+        int decimal = getMaxDecimal(valueLength);
 
-        for (int i = 1; i < valueLength; i++) {
-            decimal *= 10;
-        }
-
-        valueCopy = value;
-        newValue += (valueCopy % 10) * decimal;
-        valueCopy /= 10;
+        newValue += (value % 10) * decimal;
+        value /= 10;
         decimal = 10;
         currentPosition++;
 
         // Прибавляет все цифры между первой и последней.
         while (currentPosition != valueLength) {
             currentPosition++;
-            newValue += (valueCopy % 10) * decimal;
+            newValue += (value % 10) * decimal;
             decimal *= 10;
-            valueCopy /= 10;
+            value /= 10;
         }
 
-        newValue += valueCopy % 10;
+        newValue += value % 10;
 
         return newValue;
     }
@@ -132,34 +121,44 @@ public class ElementaryTraining {
          *
          */
         int newValue = 0;
-        int valueSize = 0;
-        int valueCopy = value;
+        int valueLength = getValueLength(value);
 
-        do {
-            valueCopy /= 10;
-            valueSize++;
-        } while (valueCopy != 0);
-
-        if (valueSize < 2 || valueSize > 5) {
+        if (valueLength < 2 || valueLength > 5) {
             return value;
         }
 
         // Отвечает за разрядность
-        int decimal = 1;
-        for (int i = 1; i < valueSize; i++) {
-            decimal *= 10;
-        }
+        int decimal = getMaxDecimal(valueLength);
 
-        valueCopy = value;
         do {
-            int nextDigit = valueCopy / decimal;
+            int nextDigit = value / decimal;
             if (nextDigit % 2 == 1) {
                 newValue += nextDigit * decimal;
             }
-            valueCopy %= decimal;
+            value %= decimal;
             decimal /= 10;
-        } while (valueCopy != 0);
+        } while (value != 0);
 
         return newValue;
+    }
+
+    private int getValueLength(int value) {
+
+        int valueSize = 0;
+        do {
+            value /= 10;
+            valueSize++;
+        } while (value != 0);
+
+        return valueSize;
+    }
+
+    private int getMaxDecimal(int valueLength) {
+
+        int decimal = 1;
+        for (int i = 1; i < valueLength; i++) {
+            decimal *= 10;
+        }
+        return decimal;
     }
 }
