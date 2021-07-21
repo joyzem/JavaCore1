@@ -20,8 +20,7 @@ public class ElementaryTraining {
      * @return среднее значение для введенных чисел
      */
     public double averageValue(int firstValue, int secondValue) {
-        //TODO: implement it
-        return 0;
+        return (double)(firstValue + secondValue) / 2;
     }
 
     /**
@@ -34,8 +33,10 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        //TODO: implement it
-        return 0;
+        firstValue *= 2;
+        secondValue -= 3;
+        thirdValue *= thirdValue;
+        return firstValue + secondValue + thirdValue;
     }
 
     /**
@@ -47,7 +48,7 @@ public class ElementaryTraining {
      * @return новое значение
      */
     public int changeValue(int value) {
-        //TODO: implement it
+        value = (value > 3) ? (value + 10) : (value - 10);
         return value;
     }
 
@@ -62,8 +63,42 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-        //TODO: implement it
-        return 0;
+
+        // Сперва функция находит длину числа
+        // затем пробегает по всем цифрам числа с конца и прибавляет
+        // их к newValue, предварительно умножив на соответствующий
+        // разряд числа - первую цифру на наивысший разряд числа,
+        // а вторую - на десятки. Последнюю цифру - на единицу
+
+        int valueLength = getValueLength(value);
+
+        if (valueLength > 5 || valueLength < 2) {
+            return value;
+        }
+
+        int newValue = 0;
+
+        int currentPosition = 1;
+
+        // отвечает за разрядность
+        int decimal = getMaxDecimal(valueLength);
+
+        newValue += (value % 10) * decimal;
+        value /= 10;
+        decimal = 10;
+        currentPosition++;
+
+        // Прибавляет все цифры между первой и последней.
+        while (currentPosition != valueLength) {
+            currentPosition++;
+            newValue += (value % 10) * decimal;
+            decimal *= 10;
+            value /= 10;
+        }
+
+        newValue += value % 10;
+
+        return newValue;
     }
 
     /**
@@ -77,7 +112,53 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
-        //TODO: implement it
-        return 0;
+
+        /*
+         * Сперва функция находит длину числа
+         * Затем пробегает по числу слева направо
+         * Если текущая цифра нечетная, то прибавляем
+         * эту цифру в соответствующем разряде.
+         *
+         */
+        int newValue = 0;
+        int valueLength = getValueLength(value);
+
+        if (valueLength < 2 || valueLength > 5) {
+            return value;
+        }
+
+        // Отвечает за разрядность
+        int decimal = getMaxDecimal(valueLength);
+
+        do {
+            int nextDigit = value / decimal;
+            if (nextDigit % 2 == 1) {
+                newValue += nextDigit * decimal;
+            }
+            value %= decimal;
+            decimal /= 10;
+        } while (value != 0);
+
+        return newValue;
+    }
+
+    private int getValueLength(int value) {
+
+        int valueSize = 0;
+        do {
+            value /= 10;
+            valueSize++;
+        } while (value != 0);
+
+        return valueSize;
+    }
+
+    private int getMaxDecimal(int valueLength) {
+
+        int decimal = 1;
+        for (int i = 1; i < valueLength; i++) {
+            decimal *= 10;
+        }
+        return decimal;
     }
 }

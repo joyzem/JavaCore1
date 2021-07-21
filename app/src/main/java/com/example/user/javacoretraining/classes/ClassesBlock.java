@@ -1,5 +1,8 @@
 package com.example.user.javacoretraining.classes;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Набор заданий по работе с классами в java.
  * <p>
@@ -7,7 +10,7 @@ package com.example.user.javacoretraining.classes;
  * <p>
  * Проверка осуществляется ментором.
  */
-public interface ClassesBlock {
+public class ClassesBlock {
 
     /*
       I
