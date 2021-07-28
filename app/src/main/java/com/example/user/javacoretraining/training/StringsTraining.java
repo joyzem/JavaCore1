@@ -22,8 +22,14 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
-        return "";
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < text.length(); i++) {
+            if (i % 2 == 1) {
+                result.append(text.charAt(i));
+            }
+        }
+        return result.toString();
     }
 
     /**
@@ -37,8 +43,26 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-        //TODO: implement it
-        return new int[]{};
+        int[] result = new int[text.length()];
+        int lastIndex = 0;
+
+        if (text.length() > 0) {
+            char lastChar = text.charAt(text.length() - 1);
+            for (int i = 0; i < text.length() - 1; i++) {
+                if (text.charAt(i) == lastChar) {
+                    result[lastIndex] = i;
+                    lastIndex++;
+                }
+            }
+        }
+
+        if (lastIndex == 0) {
+            return new int[] {};
+        }
+
+        int[] trimmedResult = new int[lastIndex] ;
+        if (lastIndex >= 0) System.arraycopy(result, 0, trimmedResult, 0, lastIndex);
+        return trimmedResult;
     }
 
     /**
@@ -49,8 +73,14 @@ public class StringsTraining {
      * @return количество цифр в строке
      */
     public int getNumbersCount(String text) {
-        //TODO: implement it
-        return 0;
+        int result = 0;
+
+        for (char c : text.toCharArray()) {
+            if (Character.isDigit(c)) {
+                result++;
+            }
+        }
+        return result;
     }
 
     /**
@@ -61,8 +91,46 @@ public class StringsTraining {
      * @return текст, где цифры заменены словами
      */
     public String replaceAllNumbers(String text) {
-        //TODO: implement it
-        return text;
+        StringBuilder newString = new StringBuilder();
+
+        for(int i = 0; i < text.length(); i++){
+            char nextChar = text.charAt(i);
+            switch(nextChar) {
+                case '0':
+                    newString.append("zero");
+                    break;
+                case '1':
+                    newString.append("one");
+                    break;
+                case '2':
+                    newString.append("two");
+                    break;
+                case '3':
+                    newString.append("three");
+                    break;
+                case '4':
+                    newString.append("four");
+                    break;
+                case '5':
+                    newString.append("five");
+                    break;
+                case '6':
+                    newString.append("six");
+                    break;
+                case '7':
+                    newString.append("seven");
+                    break;
+                case '8':
+                    newString.append("eight");
+                    break;
+                case '9':
+                    newString.append("nine");
+                    break;
+                default:
+                    newString.append(nextChar);
+            }
+        }
+        return newString.toString();
     }
 
     /**
@@ -73,8 +141,18 @@ public class StringsTraining {
      * @return измененная строка
      */
     public String capitalReverse(String text) {
-        //TODO: implement it
-        return text;
+        StringBuilder newString = new StringBuilder(text);
+        for (int i = 0; i < newString.length(); i++) {
+
+            char currentChar = newString.charAt(i);
+
+            if (Character.isUpperCase(currentChar)) {
+                newString.setCharAt(i, Character.toLowerCase(currentChar));
+            } else {
+                newString.setCharAt(i, Character.toUpperCase(currentChar));
+            }
+        }
+        return newString.toString();
     }
 
 }
