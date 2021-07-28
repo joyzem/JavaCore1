@@ -5,15 +5,13 @@
 package com.example.user.javacoretraining.javaPart2;
 
 /**
- * Practice task number 1
+ * First task
  *
  * @version 1.0 28 Jul 2021
  * @author Rodion Gazizov
  */
 public class Task1 {
-    /* Class has repeatTask method that is called in main method. */
 
-    /** Main method of the class */
     public static void main(String[] args) {
         Printing printer = () -> System.out.println("I love Java");
         repeatTask(10, printer);

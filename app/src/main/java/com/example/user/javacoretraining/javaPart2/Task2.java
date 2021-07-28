@@ -5,14 +5,13 @@
 package com.example.user.javacoretraining.javaPart2;
 
 /**
- * Seconds task class
+ * Second task
  *
- * @version 1.0 28.07.2021
+ * @version 1.0 28 Jul 2021
  * @author Rodion Gazizov
  */
 public class Task2 {
 
-    /* Entry point for the program */
     public static void main(String[] args) {
         Point.moveMultiTimes();
     }
@@ -40,8 +39,8 @@ class Point {
     /**
      * Initial constructor
      *
-     * @param x - x coordinate of the point
-     * @param y - y coordinate of the point
+     * @param x X coordinate of the point
+     * @param y Y coordinate of the point
      */
     Point(int x, int y) {
         coordinates = new Pair<>(x, y);
@@ -51,9 +50,9 @@ class Point {
      * Takes coordinates and direction and returns new
      * coordinates according the given direction
      *
-     * @param coordinates - old coordinates
-     * @param direction - direction
-     * @return - new coordinates
+     * @param coordinates Old coordinates
+     * @param direction Direction
+     * @return New coordinates
      */
     public static Pair<Integer, Integer> getNewCoordinates(
             Pair<Integer, Integer> coordinates, Directions direction) {
@@ -102,8 +101,8 @@ class Point {
 /**
  * Class for holding two logically related values
  *
- * @param <T> - generic for the first value
- * @param <E> - generic for the second value
+ * @param <T> Generic for the first value
+ * @param <E> Generic for the second value
  */
 class Pair<T, E> {
 
@@ -119,8 +118,9 @@ class Pair<T, E> {
 
     /**
      * Constructor
-     * @param t - first value
-     * @param e - second value
+     *
+     * @param t First value
+     * @param e Second value
      */
     Pair(T t, E e) {
         this.t = t;
@@ -128,16 +128,14 @@ class Pair<T, E> {
     }
 
     /**
-     * Getter for the first value
-     * @return first value
+     * @return First value
      */
     public T getFirst() {
         return t;
     }
 
     /**
-     * Getter for the second value
-     * @return second value
+     * @return Second value
      */
     public E getSecond() {
         return e;
@@ -145,7 +143,8 @@ class Pair<T, E> {
 
     /**
      * Setter for the first value
-     * @param t - the new value of the first value
+     *
+     * @param t The new value of the first value
      */
     public void setFirst(T t) {
         this.t = t;
@@ -153,7 +152,8 @@ class Pair<T, E> {
 
     /**
      * Setter for the second value
-     * @param e - the new value of the second value
+     *
+     * @param e The new value of the second value
      */
     public void setSecond(E e) {
         this.e = e;
