@@ -22,8 +22,8 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
         StringBuilder result = new StringBuilder();
+
         for (int i = 0; i < text.length(); i++) {
             if (i % 2 == 1) {
                 result.append(text.charAt(i));
@@ -43,10 +43,9 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-
         int[] result = new int[text.length()];
-
         int lastIndex = 0;
+
         if (text.length() > 0) {
             char lastChar = text.charAt(text.length() - 1);
             for (int i = 0; i < text.length() - 1; i++) {
@@ -74,7 +73,6 @@ public class StringsTraining {
      * @return количество цифр в строке
      */
     public int getNumbersCount(String text) {
-
         int result = 0;
 
         for (char c : text.toCharArray()) {
@@ -82,7 +80,6 @@ public class StringsTraining {
                 result++;
             }
         }
-
         return result;
     }
 
@@ -94,7 +91,6 @@ public class StringsTraining {
      * @return текст, где цифры заменены словами
      */
     public String replaceAllNumbers(String text) {
-
         StringBuilder newString = new StringBuilder();
 
         for(int i = 0; i < text.length(); i++){
@@ -134,7 +130,6 @@ public class StringsTraining {
                     newString.append(nextChar);
             }
         }
-
         return newString.toString();
     }
 
@@ -156,7 +151,6 @@ public class StringsTraining {
             } else {
                 newString.setCharAt(i, Character.toUpperCase(currentChar));
             }
-
         }
         return newString.toString();
     }
