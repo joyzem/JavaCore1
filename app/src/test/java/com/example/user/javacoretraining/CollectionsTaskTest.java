@@ -1,19 +1,17 @@
 package com.example.user.javacoretraining;
 
-import com.example.user.javacoretraining.collections.CollectionsBlock.Task;
-import com.example.user.javacoretraining.collections.CollectionsBlock.StudentsGroup;
-import com.example.user.javacoretraining.collections.CollectionsBlock.Student;
+import com.example.user.javacoretraining.collections.CollectionsPracticeTask;
+import com.example.user.javacoretraining.collections.CollectionsPracticeTask.*;
+
+
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-
-
 /*
      Задание подразумевает создание класса(ов) для выполнения задачи.
 
@@ -26,11 +24,11 @@ import java.util.TreeSet;
     */
 public class CollectionsTaskTest {
 
-    private static Task task;
+    private static CollectionsPracticeTask task;
 
     @BeforeClass
     public static void init() {
-        task = new Task(getStudentsGroups());
+        task = new CollectionsPracticeTask(getStudentsGroups());
     }
 
     @Test
@@ -51,22 +49,23 @@ public class CollectionsTaskTest {
 
         Student student1A = new Student("Vlad", "Popov", "Ivanovich",
                 2003, 1, groupA,
-                new HashMap<String, Integer>() {{
-                    put("Biology", 4);
-                    put("English", 5);
-                    put("Physics", 5);
-                    put("History", 5);
-                    put("Informatics", 5);
-                }});
+                new ArrayList<Pair<String, Integer>>() {{
+                    add(new Pair("Biology", 4));
+                    add(new Pair( "English", 5));
+                    add(new Pair("Physics", 5));
+                    add(new Pair("History", 5));
+                    add(new Pair("Informatics", 5));
+                }}
+        );
 
         Student student2A = new Student("Georgy", "Georgiev", "Vasilevich",
                 2002, 1, groupA,
-                new HashMap<String, Integer>() {{
-                    put("Biology", 4);
-                    put("English", 5);
-                    put("Physics", 3);
-                    put("History", 2);
-                    put("Informatics", 5);
+                new ArrayList<Pair<String, Integer>>() {{
+                    add(new Pair("Biology", 4));
+                    add(new Pair( "English", 5));
+                    add(new Pair("Physics", 3));
+                    add(new Pair("History", 2));
+                    add(new Pair("Informatics", 5));
                 }}
         );
 
@@ -80,12 +79,13 @@ public class CollectionsTaskTest {
 
         Student student1B = new Student("Andrey", "Alifirenko", "Aleksandrovich",
                 2001, 2, groupB,
-                new HashMap<String, Integer>() {{
-                    put("Biology", 4);
-                    put("English", 2);
-                    put("Physics", 2);
-                    put("History", 5);
-                    put("Informatics", 5); }}
+                new ArrayList<Pair<String, Integer>>() {{
+                    add(new Pair("Biology", 4));
+                    add(new Pair( "English", 2));
+                    add(new Pair("Physics", 2));
+                    add(new Pair("History", 5));
+                    add(new Pair("Informatics", 2));
+                }}
         );
 
         groupB.addStudents(student1B);
