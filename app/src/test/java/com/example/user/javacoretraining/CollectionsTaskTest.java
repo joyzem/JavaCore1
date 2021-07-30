@@ -1,8 +1,9 @@
 package com.example.user.javacoretraining;
 
-import com.example.user.javacoretraining.collections.CollectionsPracticeTask;
-import com.example.user.javacoretraining.collections.CollectionsPracticeTask.*;
-
+import com.example.user.javacoretraining.collections.practice_task.CollectionsPracticeTask;
+import com.example.user.javacoretraining.collections.practice_task.Student;
+import com.example.user.javacoretraining.collections.practice_task.StudentsGroup;
+import com.example.user.javacoretraining.collections.practice_task.Subject;
 
 
 import org.junit.BeforeClass;
@@ -49,23 +50,23 @@ public class CollectionsTaskTest {
 
         Student student1A = new Student("Vlad", "Popov", "Ivanovich",
                 2003, 1, groupA,
-                new ArrayList<Pair<String, Integer>>() {{
-                    add(new Pair("Biology", 4));
-                    add(new Pair( "English", 5));
-                    add(new Pair("Physics", 5));
-                    add(new Pair("History", 5));
-                    add(new Pair("Informatics", 5));
+                new ArrayList<Subject>() {{
+                    add(new Subject("Biology", 4));
+                    add(new Subject( "English", 5));
+                    add(new Subject("Physics", 5));
+                    add(new Subject("History", 5));
+                    add(new Subject("Informatics", 5));
                 }}
         );
 
         Student student2A = new Student("Georgy", "Georgiev", "Vasilevich",
                 2002, 1, groupA,
-                new ArrayList<Pair<String, Integer>>() {{
-                    add(new Pair("Biology", 4));
-                    add(new Pair( "English", 5));
-                    add(new Pair("Physics", 3));
-                    add(new Pair("History", 2));
-                    add(new Pair("Informatics", 5));
+                new ArrayList<Subject>() {{
+                    add(new Subject("Biology", 4));
+                    add(new Subject( "English", 5));
+                    add(new Subject("Physics", 3));
+                    add(new Subject("History", 2));
+                    add(new Subject("Informatics", 5));
                 }}
         );
 
@@ -79,12 +80,12 @@ public class CollectionsTaskTest {
 
         Student student1B = new Student("Andrey", "Alifirenko", "Aleksandrovich",
                 2001, 2, groupB,
-                new ArrayList<Pair<String, Integer>>() {{
-                    add(new Pair("Biology", 4));
-                    add(new Pair( "English", 2));
-                    add(new Pair("Physics", 2));
-                    add(new Pair("History", 5));
-                    add(new Pair("Informatics", 2));
+                new ArrayList<Subject>() {{
+                    add(new Subject("Biology", 4));
+                    add(new Subject( "English", 2));
+                    add(new Subject("Physics", 2));
+                    add(new Subject("History", 5));
+                    add(new Subject("Informatics", 2));
                 }}
         );
 
