@@ -2,8 +2,16 @@ package com.example.user.javacoretraining.collections;
 
 import android.support.annotation.NonNull;
 
-import java.util.Collections;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Набор тренингов по работе со строками в java.
@@ -27,8 +35,28 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        List<T> newList = new LinkedList<>();
+        int minSize = Math.min(firstList.size(), secondList.size());
+        int firstListIndex = 0;
+        int secondListIndex = 0;
+
+        while (firstListIndex < minSize && secondListIndex < minSize) {
+            if (firstList.get(firstListIndex).compareTo(secondList.get(secondListIndex)) < 0) {
+                newList.add(secondList.get(secondListIndex));
+                secondListIndex++;
+            } else {
+                newList.add(firstList.get(firstListIndex));
+                firstListIndex++;
+            }
+        }
+
+        if (firstListIndex == firstList.size()) {
+            newList.addAll(secondList.subList(secondListIndex, secondList.size()));
+        } else {
+            newList.addAll(firstList.subList(firstListIndex, firstList.size()));
+        }
+
+        return newList;
     }
 
     /**
@@ -39,8 +67,15 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        LinkedList<T> newList = new LinkedList<>();
+        if (inputList.size() > 0) {
+            newList.add(inputList.get(0));
+        }
+        for (int i = 1; i < inputList.size(); i++) {
+            newList.add(inputList.get(i));
+            newList.addAll(inputList.subList(0, i));
+        }
+        return newList;
     }
 
     /**
@@ -52,8 +87,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return true;
+        HashSet<T> firstSet = new HashSet<>(firstList);
+        HashSet<T> secondSet = new HashSet<>(secondList);
+        return firstSet.equals(secondSet);
     }
 
     /**
@@ -68,8 +104,25 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        //TODO: implement it
-        return Collections.emptyList();
+        ArrayDeque<T> deque = new ArrayDeque<>(inputList);
+
+        if (deque.isEmpty()) {
+            return new ArrayList<>();
+        }
+        if (n < 0) {
+            while (n != 0) {
+                T elem = deque.pollFirst();
+                deque.addLast(elem);
+                n++;
+            }
+        } else {
+            while (n != 0) {
+                T elem = deque.pollLast();
+                deque.addFirst(elem);
+                n--;
+            }
+        }
+        return new ArrayList<>(deque);
     }
 
     /**
@@ -84,18 +137,14 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+        LinkedList<String> linkedList = new LinkedList<>();
+        for (String word : inputList) {
+            if (word.equals(a)) {
+                linkedList.add(b);
+            } else {
+                linkedList.add(word);
+            }
+        }
+        return linkedList;
     }
-
-    /*
-      Задание подразумевает создание класса(ов) для выполнения задачи.
-
-      Дан список студентов. Элемент списка содержит фамилию, имя, отчество, год рождения,
-      курс, номер группы, оценки по пяти предметам. Заполните список и выполните задание.
-      Упорядочите студентов по курсу, причем студенты одного курса располагались
-      в алфавитном порядке. Найдите средний балл каждой группы по каждому предмету.
-      Определите самого старшего студента и самого младшего студентов.
-      Для каждой группы найдите лучшего с точки зрения успеваемости студента.
-     */
 }
