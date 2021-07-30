@@ -4,12 +4,12 @@ import android.support.annotation.NonNull;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -35,17 +35,12 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-
-        if (firstList == null || secondList == null) throw new NullPointerException();
-
         List<T> newList = new LinkedList<>();
-
         int minSize = Math.min(firstList.size(), secondList.size());
-
         int firstListIndex = 0;
         int secondListIndex = 0;
 
-        for (; firstListIndex < minSize && secondListIndex < minSize;) {
+        while (firstListIndex < minSize && secondListIndex < minSize) {
             if (firstList.get(firstListIndex).compareTo(secondList.get(secondListIndex)) < 0) {
                 newList.add(secondList.get(secondListIndex));
                 secondListIndex++;
@@ -72,7 +67,6 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-
         LinkedList<T> newList = new LinkedList<>();
         if (inputList.size() > 0) {
             newList.add(inputList.get(0));
@@ -81,7 +75,6 @@ public class CollectionsBlock<T extends Comparable> {
             newList.add(inputList.get(i));
             newList.addAll(inputList.subList(0, i));
         }
-
         return newList;
     }
 
@@ -94,10 +87,8 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-
         HashSet<T> firstSet = new HashSet<>(firstList);
         HashSet<T> secondSet = new HashSet<>(secondList);
-
         return firstSet.equals(secondSet);
     }
 
@@ -118,7 +109,6 @@ public class CollectionsBlock<T extends Comparable> {
         if (deque.isEmpty()) {
             return new ArrayList<>();
         }
-
         if (n < 0) {
             while (n != 0) {
                 T elem = deque.pollFirst();
@@ -147,19 +137,15 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-
-        if (a == null || b == null) throw new NullPointerException();
-
-        LinkedList<String> arrayList = new LinkedList<>();
+        LinkedList<String> linkedList = new LinkedList<>();
         for (String word : inputList) {
-            if (word == a) {
-                arrayList.add(b);
+            if (word.equals(a)) {
+                linkedList.add(b);
             } else {
-                arrayList.add(word);
+                linkedList.add(word);
             }
         }
-
-        return arrayList;
+        return linkedList;
     }
 
     /*
@@ -173,78 +159,45 @@ public class CollectionsBlock<T extends Comparable> {
       Для каждой группы найдите лучшего с точки зрения успеваемости студента.
      */
 
-    class Task {
+    public static class Task {
 
         TreeSet<Student> students;
         HashSet<StudentsGroup> groups;
 
-        {
-            initStudents();
+        public Task(Set<StudentsGroup> groups) {
+            this.groups = new HashSet<>(groups);
+            this.students = new TreeSet<>(getAllStudentsFromGroups());
+        }
 
+        public void displayGroupsStatistics() {
+            for (StudentsGroup group : groups) {
+                displayGroupStatistic(group);
+            }
+        }
+
+        public void displayStudents() {
             for (Student student : students) {
                 System.out.println(student.toString());
             }
-
-            for (StudentsGroup group : groups) {
-                System.out.printf("Group: %d\n", group.getGroupNumber());
-                group.calculateGroupAverages();
-                Student bestStudent = group.findBestStudent();
-                System.out.printf("The best student of group %d: %s\n", group.getGroupNumber(),
-                        bestStudent.toString());
-            }
-
-            System.out.printf("The youngest student is: \n%s\n", findYoungestStudent().toString());
-            System.out.printf("The eldest students is: \n%s\n", findEldestStudent().toString());
-
         }
 
-        private void initStudents() {
+        public void displayYoungestStudent() {
+            System.out.printf("The youngest student is: \n%s\n", findYoungestStudent().toString());
+        }
 
-            ArrayList<Student> arrayStudents= new ArrayList<>();
+        public void displayEldestStudent() {
+            System.out.printf("The eldest students is: \n%s\n", findEldestStudent().toString());
+        }
 
-            StudentsGroup groupA = new StudentsGroup(2002);
-            StudentsGroup groupB = new StudentsGroup(1902);
-            groups = new HashSet<>(Arrays.asList(groupA, groupB));
-
-            Student student1A = new Student("Vlad", "Popov", "Ivanovich",
-                    2003, 1, groupA,
-                    new HashMap<String, Integer>() {{
-                        put("Biology", 4);
-                        put("English", 5);
-                        put("Physics", 5);
-                        put("History", 5);
-                        put("Informatics", 5); }});
-
-            Student student2A = new Student("Georgy", "Georgiev", "Vasilevich",
-                    2002, 1, groupA,
-                    new HashMap<String, Integer>() {{
-                        put("Biology", 4);
-                        put("English", 5);
-                        put("Physics", 3);
-                        put("History", 2);
-                        put("Informatics", 5); }}
-            );
-
-            groupA.addStudents(student1A, student2A);
-
-            Student student1B = new Student("Andrey", "Alifirenko", "Aleksandrovich",
-                    2001, 2, groupB,
-                    new HashMap<String, Integer>() {{
-                        put("Biology", 4);
-                        put("English", 2);
-                        put("Physics", 2);
-                        put("History", 5);
-                        put("Informatics", 5); }}
-            );
-
-            groupB.addStudents(student1B);
-
-            students = new TreeSet<>(Arrays.asList(student1A, student2A, student1B));
-
+        private void displayGroupStatistic(StudentsGroup group) {
+            System.out.printf("Group: %d\n", group.getGroupNumber());
+            group.calculateGroupAverages();
+            Student bestStudent = group.findBestStudent();
+            System.out.printf("The best student of group %d: %s\n", group.getGroupNumber(),
+                    bestStudent.toString());
         }
 
         private Student findYoungestStudent() {
-
             Student youngestStudent = students.first();
             for (Student student : students) {
                 if (student.birthdayYear > youngestStudent.birthdayYear) {
@@ -255,8 +208,8 @@ public class CollectionsBlock<T extends Comparable> {
         }
 
         private Student findEldestStudent() {
-
             Student eldestStudent = students.first();
+
             for (Student student : students) {
                 if (student.birthdayYear < eldestStudent.birthdayYear) {
                     eldestStudent = student;
@@ -264,9 +217,17 @@ public class CollectionsBlock<T extends Comparable> {
             }
             return eldestStudent;
         }
+
+        private Set<Student> getAllStudentsFromGroups() {
+            Set<Student> students = new TreeSet<>();
+            for (StudentsGroup group : groups) {
+                students.addAll(group.getAllStudents());
+            }
+            return students;
+        }
     }
 
-    class StudentsGroup {
+    public static class StudentsGroup {
 
         private int groupNumber;
         private SortedSet<Student> students;
@@ -279,11 +240,10 @@ public class CollectionsBlock<T extends Comparable> {
         }
 
         public void calculateGroupAverages() {
-
             HashMap<String, Integer> subjectMarksSum = new HashMap<>();
+
             for(Student student: students) {
                 for (Map.Entry<String, Integer> subjectMarkMap : student.getSubjectMarkMap().entrySet()) {
-
                     int mark = subjectMarkMap.getValue();
                     String subject = subjectMarkMap.getKey();
 
@@ -300,7 +260,6 @@ public class CollectionsBlock<T extends Comparable> {
                 groupSubjectsAverage.put(subjectMarkSumMap.getKey(),
                         (float) subjectMarkSumMap.getValue() / students.size());
             }
-
             displayAverages();
         }
 
@@ -310,14 +269,18 @@ public class CollectionsBlock<T extends Comparable> {
             }
         }
 
-        public void addStudents(Student... students) {
-            this.students.addAll(Arrays.asList(students));
+        public void addStudents(List<Student> students) {
+            this.students.addAll(students);
+        }
+
+        public void addStudents(Student student) {
+            this.students.add(student);
         }
 
         public Student findBestStudent() {
-
             float bestAverage = students.first().getAverage();
             Student bestStudent = students.first();
+
             for (Student student : students) {
                 if (student.getAverage() > bestAverage) {
                     bestAverage = student.getAverage();
@@ -329,6 +292,10 @@ public class CollectionsBlock<T extends Comparable> {
 
         public int getGroupNumber() {
             return groupNumber;
+        }
+
+        public Set<Student> getAllStudents() {
+            return students;
         }
 
         @Override
@@ -347,13 +314,10 @@ public class CollectionsBlock<T extends Comparable> {
         }
     }
 
-    class Student extends Person implements Comparable<Student> {
+    public static class Student extends Person implements Comparable<Student> {
 
         private int courseNumber;
         private StudentsGroup group;
-
-
-
         private HashMap<String, Integer> subjectMarkMap;
 
         public Student(String name, String surname, String patronymic,
@@ -366,24 +330,16 @@ public class CollectionsBlock<T extends Comparable> {
             this.subjectMarkMap = subjectMarkMap;
         }
 
-
         public HashMap<String, Integer> getSubjectMarkMap() {
             return subjectMarkMap;
         }
 
         public float getAverage() {
-
             int sum = 0;
             for (Integer point : subjectMarkMap.values()) {
                 sum += point;
             }
-
             return (float) sum / subjectMarkMap.size();
-
-        }
-
-        public int getPointByGivenSubject(String subject) {
-            return subjectMarkMap.get(subject);
         }
 
         public int compareTo(Student s) {
@@ -408,7 +364,7 @@ public class CollectionsBlock<T extends Comparable> {
         }
     }
 
-    abstract class Person {
+    abstract static class Person {
 
         String name;
         String surname;
@@ -422,29 +378,35 @@ public class CollectionsBlock<T extends Comparable> {
             this.birthdayYear = birthdayYear;
         }
 
-
         public int compareTo(Person person) {
-
-            int resultForSurname = this.surname.compareTo(person.surname);
-
-            if (resultForSurname > 0) {
-                return 1;
-
-            } else if (resultForSurname == 0) {
-                int resultForName = this.name.compareTo(person.name);
-
-                if (resultForName > 0) {
+            int resultForSurname = changeToPlusMinusOneOrZero(this.surname.compareTo(person.surname));
+            switch (resultForSurname) {
+                case 1:
                     return 1;
-
-                } else if (resultForName == 0) {
-                    int resultForPatronymic = this.name.compareTo(person.patronymic);
-                    return Integer.compare(resultForPatronymic, 0);
-
-                } else {
+                case -1:
                     return -1;
-                }
-            } else {
-                return -1;
+                default:
+                    break;
+            }
+
+            int resultForName = changeToPlusMinusOneOrZero(this.name.compareTo(person.name));
+            switch (resultForName) {
+                case 1:
+                    return 1;
+                case -1:
+                    return -1;
+                default:
+                    break;
+            }
+
+            int resultForPatronymic = changeToPlusMinusOneOrZero(this.patronymic.compareTo(person.patronymic));
+            switch (resultForPatronymic) {
+                case 1:
+                    return 1;
+                case -1:
+                    return -1;
+                default:
+                    return 0;
             }
         }
 
@@ -473,6 +435,23 @@ public class CollectionsBlock<T extends Comparable> {
             result = 31 * result + surname.hashCode();
             result = 31 * result + patronymic.hashCode();
             return result;
+        }
+
+        /**
+         * Takes value and returns -1 if value is less than 0,
+         * 1 if value is greater than 0, else 0
+         *
+         * @param value Integer
+         * @return +- one or zero
+         */
+        private int changeToPlusMinusOneOrZero(int value) {
+            if (value < 0) {
+                return -1;
+            }
+            if (value > 0) {
+                return 1;
+            }
+            return 0;
         }
     }
 }
