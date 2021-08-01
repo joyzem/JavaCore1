@@ -53,7 +53,7 @@ public class ClassesBlock {
         }
 
         public int getMax() {
-            return (firstVar > secondVar) ? firstVar : secondVar;
+            return Math.max(firstVar, secondVar);
         }
     }
 
@@ -84,9 +84,7 @@ public class ClassesBlock {
         }
 
         public void shuffleArray() {
-
             for (int i = 0; i < arraySize; i++) {
-
                 int firstIndex = (int) (random() * (arraySize - 1));
                 int secondIndex = (int) (random() * (arraySize - 1));
 
@@ -97,12 +95,10 @@ public class ClassesBlock {
         }
 
         public int findUnique() {
-
             return new TreeSet<Integer>(arrayList).size();
         }
 
         public void displayArray() {
-
             for (int elem : arrayList) {
                 System.out.println(elem);
             }
@@ -117,7 +113,7 @@ public class ClassesBlock {
       Описать свойства для получения состояния объекта.
      */
 
-    abstract class AbstractTriangle {
+    abstract class Triangle {
 
         float x1;
         float y1;
@@ -125,16 +121,6 @@ public class ClassesBlock {
         float y2;
         float x3;
         float y3;
-
-        AbstractTriangle(float x1, float y1, float x2,
-                         float y2, float x3, float y3) {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-            this.x3 = x3;
-            this.y3 = y3;
-        }
 
         abstract float calculateArea();
         abstract float calculatePerimeter();
@@ -159,7 +145,6 @@ public class ClassesBlock {
         protected Seconds seconds = new Seconds(0, minutes);
 
         AbsctractTime(int h, int min, int sec) {
-
             try {
                 setTime(h, min, sec);
             } catch (IllegalArgumentException e) {
@@ -213,19 +198,19 @@ public class ClassesBlock {
             seconds.moveTimeForward(s);
         }
 
-        abstract class TimePresenter {
+        abstract class TimeUnit {
 
             protected int time;
             protected int maxValue;
-            protected TimePresenter highLevelPresenter;
+            protected TimeUnit highLevelPresenter;
 
-            TimePresenter(int t, TimePresenter highLevelPres) {
+            TimeUnit(int t, TimeUnit highLevelPres) {
                 time = t;
                 highLevelPresenter = highLevelPres;
             }
 
-            // For Hours presenter
-            TimePresenter(int t){
+            // For Hours unit
+            TimeUnit(int t){
                 time = t;
                 highLevelPresenter = null;
             }
@@ -239,7 +224,6 @@ public class ClassesBlock {
             }
 
             public void moveTimeForward(int deltaTime) {
-
                 int timeSum = time + deltaTime;
                 time = timeSum % (maxValue + 1);
 
@@ -255,7 +239,7 @@ public class ClassesBlock {
 
         }
 
-        class Hours extends TimePresenter {
+        class Hours extends TimeUnit {
 
             Hours(int h) {
                 super(h);
@@ -268,17 +252,15 @@ public class ClassesBlock {
             }
         }
 
-        class Minutes extends TimePresenter {
-
-            Minutes(int m, TimePresenter highLevelPres) {
+        class Minutes extends TimeUnit {
+            Minutes(int m, TimeUnit highLevelPres) {
                 super(m, highLevelPres);
                 maxValue = 59;
             }
         }
 
-        class Seconds extends TimePresenter {
-
-            Seconds(int s, TimePresenter highLevelPres) {
+        class Seconds extends TimeUnit {
+            Seconds(int s, TimeUnit highLevelPres) {
                 super(s, highLevelPres);
                 maxValue = 59;
             }
@@ -309,9 +291,7 @@ public class ClassesBlock {
         }
 
         public void displayClientsWithCityTimeMoreThanGiven(int seconds) {
-
             System.out.printf("\nClients with a city calls time more than %d:\n", seconds);
-
             for (Client client : database) {
                 if (client.inCityCallsTime.getTimeInSeconds() > seconds) {
                     client.displayInfo();
@@ -320,10 +300,7 @@ public class ClassesBlock {
         }
 
         public void displayClientsThatHaveUsedLongCalls() {
-
-
             System.out.println("\nClients that have used long calls");
-
             for (Client client : database) {
                 if (client.longDistanceCallsTime.getTimeInSeconds() > 0) {
                     client.displayInfo();
@@ -356,10 +333,8 @@ public class ClassesBlock {
             private CallsTime longDistanceCallsTime = new CallsTime(0, 0, 0);
             private CallsTime inCityCallsTime = new CallsTime(0, 0, 0);
 
-
             Client(String name, String surname, String patronymic,
                    String address, String creditCardNumber) {
-
                 super(name, surname, patronymic, address);
                 this.creditCardNumber = creditCardNumber;
                 id = ClientsDatabase.this.getMaxId() + 1;
@@ -368,10 +343,8 @@ public class ClassesBlock {
             }
 
             public void displayInfo() {
-
                 System.out.println("Client's info:\n");
                 super.displayInfo();
-
                 System.out.printf("Credit card number: %s\n" + "Debit: %.2f\n" +
                                 "Credit: %.2f\n" + "Long distance calls' time: %d\n" +
                                 "In city calls' time: %d\n",
@@ -434,7 +407,6 @@ public class ClassesBlock {
         protected String address;
 
         Person(String name, String surname, String patronymic, String address) {
-
             this.name = name;
             this.surname = surname;
             this.patronymic = patronymic;
@@ -533,9 +505,7 @@ public class ClassesBlock {
         }
 
         public void enrollToFaculty(ExamsSystem examsSystem) {
-
             examsSystem.displayInfo();
-
             System.out.print("Choose the faculty: ");
             int choice = new Scanner(System.in).nextInt();
 
@@ -550,15 +520,12 @@ public class ClassesBlock {
             for (Exam exam: examsList) {
                 examsGradeMap.put(exam, 0);
             }
-
             examsSystem.enrollNewApplicant(this, choice - 1);
         }
 
         public void passExams(ExamsSystem examsSystem) {
-
             for (Map.Entry<Exam, Integer> examGradeEntry : examsGradeMap.entrySet()) {
                 try {
-
                     examsGradeMap.put(examGradeEntry.getKey(),
                             examsSystem.examApplicant(examGradeEntry.getKey()));
 
@@ -621,14 +588,12 @@ public class ClassesBlock {
         private final float minAverageGrade;
 
         ExamsSystem(Faculty[] faculties, Teacher[] teachers, float minAverage) {
-
             this.faculties = new ArrayList<>(Arrays.asList(faculties));
             this.teachers = new ArrayList<>(Arrays.asList(teachers));
             minAverageGrade = minAverage;
         }
 
         public void displayInfo() {
-
             int counter = 1;
             for (Faculty faculty : faculties) {
                 System.out.printf("%d: Faculty: %s\n", counter, faculty.getName());
@@ -658,26 +623,19 @@ public class ClassesBlock {
         }
 
         public ArrayList<Applicant> getAdmittedApplicants() {
-
             ArrayList<Applicant> admittedApplicants = new ArrayList<>();
-
             for (Map.Entry<Applicant, Faculty> applicantEntry : allApplicants.entrySet()) {
-
                 float applicantAverage = getAverageOfApplicant(applicantEntry.getKey());
-
                 if (applicantAverage >= minAverageGrade) {
                     admittedApplicants.add(applicantEntry.getKey());
                 }
             }
-
             return admittedApplicants;
         }
 
         private float getAverageOfApplicant(Applicant applicant) {
-
             int sum = 0;
             HashMap<Exam, Integer> examGradeMap = applicant.getExamsGradeMap();
-
             for (Map.Entry<Exam, Integer> exam : examGradeMap.entrySet()) {
                 try {
                     sum += exam.getValue();
@@ -685,7 +643,6 @@ public class ClassesBlock {
                     sum += 0;
                 }
             }
-
             return (float) sum / examGradeMap.size();
         }
     }
@@ -737,9 +694,7 @@ public class ClassesBlock {
     }
 
     class TeachersDatabase {
-
         public Teacher[] getTeachers() {
-
             Teacher[] teachers = new Teacher[] {
                     new Teacher("Tkachencko",
                             new Exam[] {new Exam("Biology"), new Exam("English language")}
@@ -847,37 +802,28 @@ public class ClassesBlock {
         }
 
         public boolean makeOrder(InternetShop shop) {
-
             shop.showProducts();
-
             System.out.print("Choose the product: ");
             int choice = new Scanner(System.in).nextInt();
 
             Product product;
-
             try {
                 product = shop.getProductById(choice - 1);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Wrong input.\n");
-                return false;
-            }
-
-            try {
-
                 Order order = new Order(product, this);
+
                 shop.productManager.recordSale(order);
                 addItem(product);
                 balance.subtract(product.getCost());
+
                 return true;
-
             } catch (NotEnoughMoneyException e) {
-
                 System.out.printf("Your balance: %.2f\nThe price: %.2f", e.balance, e.required);
                 return false;
-
             } catch (InBlackListException e) {
-
                 System.out.println(e.getMessage());
+                return false;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Wrong input.\n");
                 return false;
             }
         }
@@ -889,7 +835,6 @@ public class ClassesBlock {
         SimplePerson owner;
 
         Order(Product product, Client owner) throws NotEnoughMoneyException {
-
             if (product.getCost().compareTo(owner.getBalance()) > 0) {
                 throw new NotEnoughMoneyException(
                         owner.getBalance(), product.getCost());
@@ -920,13 +865,10 @@ public class ClassesBlock {
         }
 
         public void showProducts() {
-
             int count = 1;
-
             System.out.println("Shop's products:");
             for (Product product : products) {
-                System.out.printf("%d: %s\n", count, product.getName());
-                count++;
+                System.out.printf("%d: %s\n", count++, product.getName());
             }
         }
 
@@ -950,11 +892,9 @@ public class ClassesBlock {
 
             public void recordSale(Order order) throws InBlackListException {
                 if (!blackList.contains(order.getOwner())) {
-
                     Product product = order.getProduct();
                     products.remove(product);
                     soldProducts.put(product, order.getOwner());
-
                 } else {
                     throw new InBlackListException("The customer in the blacklist.\n");
                 }
@@ -975,10 +915,8 @@ public class ClassesBlock {
     }
 
     class InBlackListException extends Exception {
-
         InBlackListException(String message) {
             super(message);
         }
-
     }
 }
